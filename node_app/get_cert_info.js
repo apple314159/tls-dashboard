@@ -26,9 +26,15 @@ monitored_hosts.forEach(get_cert_parameters)
  * @param {array} array The 
  */
 function get_cert_parameters(element, index, array) {
+  var temp = element.split(':');
+  var port = 443;
+  if (temp.length == 2) {
+	port = parseInt(temp[1]);
+	element = temp[0];
+  }
   var options = {
     hostname: element,
-    port: 443,
+    port: port,
     method: 'GET'
   };
 
